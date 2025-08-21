@@ -55,6 +55,34 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
+            
+                <p>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Contact : 655271506  
+                    <i class="fas fa-box"></i>
+                    Email : Abgroup022@gmail.com 
+                </p>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><i class="fab fa-facebook-messenger"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
             <a class="navbar-brand" href="#">
                 <strong>AB COMPTA</strong>
             </a>
@@ -66,11 +94,37 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">A Propos</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-envelope me-1"></i>Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-telephone me-2"></i>Nous appeler
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-envelope me-2"></i>Email
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-calendar me-2"></i>Rendez-vous
+                            </a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Nos Solutions</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-envelope me-1"></i>Nos Solutions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-telephone me-2"></i>Nous appeler
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-envelope me-2"></i>Email
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-calendar me-2"></i>Rendez-vous
+                            </a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -80,21 +134,124 @@
         </div>
     </nav>
 
+    <div id="monCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <!-- Indicateurs -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#monCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#monCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#monCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#monCarousel" data-bs-slide-to="3"></button>
+        </div>
+            
+            <!-- Slides -->
+        <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="d-block w-100" alt="Paysage de montagne" style="height: 400px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Paysage de montagne</h5>
+                    <p>Une vue magnifique sur les montagnes enneigées</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05" class="d-block w-100" alt="Forêt" style="height: 400px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Forêt verdoyante</h5>
+                    <p>Une forêt dense avec une lumière matinale</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0" class="d-block w-100" alt="Plage" style="height: 400px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Plage paradisiaque</h5>
+                    <p>Une plage de sable fin et une eau turquoise</p>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b" class="d-block w-100" alt="Desert" style="height: 400px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Dunes du désert</h5>
+                    <p>Les magnifiques dunes de sable du désert</p>
+                </div>
+            </div>
+        </div>
+            
+            <!-- Contrôles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#monCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#monCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container text-center">
             <h1 class="display-4 fw-bold mb-4">Plus de 22 ans d'expérience dans le secteur</h1>
-            <h2 class="h3 mb-4">1er Opérateur de Télécommunications Privé au Cameroun</h2>
-            <p class="lead mb-5">Depuis plus de 22 ans, Martin Télécom met à la disposition des entreprises un ensemble de solutions de connectivité afin de booster leur productivité.</p>
-            
-            <div class="divider"></div>
-            
-            <a href="#" class="btn btn-outline-custom">En Savoir Plus</a>
-            <p class="slogan mt-3">Chacun est Derni.</p>
         </div>
-    </section>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b" class="d-block w-100" alt="Desert" style="height: 400px;">
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bold mb-4">Bienvenue dans l’Univers de le gestion</h1>
+                
+                Logicile ernet Sécurisé
+                Naviguez en toute sérénité
+                et en toute sécurité.
 
+                Coût de déploiement très attractif
+                Une équipe professionnelle et qualifiée
+                Connexion hautement disponible
+            </div>
+        </div>
+
+    </section>
+<section class="hero-section">
+        <div class="container text-center">
+            <h2 class="display-4 fw-bold mb-4">Contactez-nous pour une offre sur mesure</h2>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0" class="d-block w-100" alt="Desert" style="height: 400px;">
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bold mb-4">Une Gestion Automatisée de votre Réseau</h1>
+                
+                Bénéficiez d’une architecture WAN virtuelle qui permettra à votre entreprise de centraliser et gérer vos différentes liaisons internet quel que soit l’opérateur.
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="mt-4">
+                <h2 class="mt-4"></h2>
+            </div>
+        </div>
+
+    </section>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="container">
+        
+        
+        <!-- Carousel Bootstrap -->
+        
+        
+        <div class="mt-4">
+            <h2>Comment utiliser ce carousel</h2>
+            <p>Ce carousel défile automatiquement toutes les 3 secondes. Vous pouvez :</p>
+            <ul>
+                <li>Cliquer sur les flèches de navigation pour passer à l'image suivante ou précédente</li>
+                <li>Cliquer sur les indicateurs en bas pour aller directement à une image spécifique</li>
+                <li>Survoler le carousel avec la souris pour interrompre temporairement le défilement automatique</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS et Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
