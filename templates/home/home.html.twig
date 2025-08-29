@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AB COMPTA</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -220,6 +222,47 @@
       padding: 5px 15px;
       border-radius: 5px;
     }
+    .img-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .img-container img {
+            display: block;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .img-container:hover img {
+            transform: scale(1.03);
+        }
+        .btn-overlay {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+        }
+        .big-demo-btn {
+            width: 200px;
+            height: 80px;
+            font-size: 28px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .big-demo-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -258,37 +301,31 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-envelope me-1"></i>Contact
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsevente"
+                            aria-expanded="true" aria-controls="collapsevente">
+                            <span>A Propos</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-telephone me-2"></i>Nous appeler
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-envelope me-2"></i>Email
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-calendar me-2"></i>Rendez-vous
-                            </a></li>
-                        </ul>
+                        <div id="collapsevente" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Opérations des ventes</h6>
+                                <a class="collapse-item" href="../vente/vente.php" id="ajouterVente"> Ajouter une vente</a>
+                                <a class="collapse-item" href="../vente/liste.php?date=<?php echo date("Y"); ?>">Liste des ventes</a>      
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-envelope me-1"></i>Nos Solutions
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsevente"
+                            aria-expanded="true" aria-controls="collapsevente">
+                            <span>Nos solutions</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-telephone me-2"></i>Nous appeler
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-envelope me-2"></i>Email
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <i class="bi bi-calendar me-2"></i>Rendez-vous
-                            </a></li>
-                        </ul>
+                        <div id="collapsevente" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Opérations des ventes</h6>
+                                <a class="collapse-item" href="../vente/vente.php" id="ajouterVente"> Ajouter une vente</a>
+                                <a class="collapse-item" href="../vente/liste.php?date=<?php echo date("Y"); ?>">Liste des ventes</a>      
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -310,23 +347,23 @@
             <!-- Slides -->
         <div class="carousel-inner rounded shadow">
             <div class="carousel-item active" data-bs-interval="3000">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="d-block w-100" alt="Paysage de montagne" style="height: 400px;">
+                <img src="{{ asset('img/camptable1.jpg')}}" class="d-block w-100" alt="Paysage de montagne" style="height: 400px;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Paysage de montagne</h5>
-                    <p>Une vue magnifique sur les montagnes enneigées</p>
+                    <h5>dashboard</h5>
+                    <p>Un resume d'activite claire</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="3000">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05" class="d-block w-100" alt="Forêt" style="height: 400px;">
+                <img src="{{ asset('img/reporting.jpeg')}}" class="d-block w-100" alt="Forêt" style="height: 400px;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Forêt verdoyante</h5>
+                    <h5>Un Reporting</h5>
                     <p>Une forêt dense avec une lumière matinale</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="3000">
-                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0" class="d-block w-100" alt="Plage" style="height: 400px;">
+                <img src="{{asset('img/journale.jpg')}}" class="d-block w-100" alt="Plage" style="height: 400px;">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Plage paradisiaque</h5>
+                    <h5>Imerger vous</h5>
                     <p>Une plage de sable fin et une eau turquoise</p>
                 </div>
             </div>
@@ -352,24 +389,26 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container text-center">
-            <h1 class="display-4 fw-bold mb-4">Plus de 22 ans d'expérience dans le secteur</h1>
-        </div>
         <div class="form-group row">
             <div class="col-md-6">
                 <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b" class="d-block w-100" alt="Desert" style="height: 400px;">
             </div>
             <div class="col-md-6">
                 <h1 class="display-4 fw-bold mb-4">Bienvenue dans l’Univers de le gestion</h1>
-                
-                Logicile ernet Sécurisé
                 Naviguez en toute sérénité
                 et en toute sécurité.
 
                 Coût de déploiement très attractif
                 Une équipe professionnelle et qualifiée
                 Connexion hautement disponible
+
+                <h1 class="display-4 fw-bold mb-4 text-center">
+                    <a class="btn btn-success big-demo-btn" >
+                        Demo
+                    </a>
+                </h1>
             </div>
+            
         </div>
 
     </section>
@@ -379,12 +418,34 @@
         </div>
         <div class="form-group row">
             <div class="col-md-6">
-                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0" class="d-block w-100" alt="Desert" style="height: 400px;">
+                <div class="img-container">
+                    <img src="{{ asset('img/dashboard.png')}}" class="d-block w-100" alt="Desert" style="height: 400px;">
+                    <div class="btn-overlay">
+                                <button class="btn btn-primary dashboard-btn">
+                                    En savoir plus
+                                </button>
+                                <button class="btn btn-success dashboard-btn">
+                                    Obtenir un Devis
+                                </button>
+                            </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <h1 class="display-4 fw-bold mb-4">Une Gestion Automatisée de votre Réseau</h1>
-                
-                Bénéficiez d’une architecture WAN virtuelle qui permettra à votre entreprise de centraliser et gérer vos différentes liaisons internet quel que soit l’opérateur.
+                <h1 class="display-4 fw-bold mb-4.">Une Gestion Automatisée</h1>
+
+                Ce logiciel est une solution de gestion complète et intuitive conçue pour les commerçants, gérants de boutiques et petits entrepreneurs. Son objectif principal est de fournir une vision claire et centralisée de l'activité de l'entreprise en un coup d'œil.
+
+                Idéal pour un quotidien simplifié, il permet de :
+
+                Suivre les performances financières jour après jour, avec un graphique visuel et simple à comprendre.
+
+                Analyser l'origine de ses revenus pour identifier quelles activités (vente, service, etc.) sont les plus profitables.
+
+                Gérer son inventaire en temps réel pour toujours connaître le stock disponible et éviter les ruptures.
+
+                Suivre les ventes pour comprendre quels produits partent le plus.
+
+                C'est l'outil parfait pour piloter son commerce avec sérénité et prendre des décisions éclairées basées sur des données précises.
             </div>
         </div>
         <div class="mt-4">
@@ -416,23 +477,23 @@
     <div class="stats-container">
             <div class="row text-center">
                 <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-                    <div class="number">25+</div>
-                    <div class="label">Années d'Expérience</div>
+                    <div class="number text-black">25+</div>
+                    <div class="label text-white">Années d'Expérience</div>
                 </div>
                 
                 <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-                    <div class="number">100+</div>
-                    <div class="label">Employés</div>
+                    <div class="number text-black">100+</div>
+                    <div class="label text-white">Employés</div>
                 </div>
                 
                 <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-                    <div class="number">450+</div>
-                    <div class="label">Clients et Partenaires</div>
+                    <div class="number text-black">450+</div>
+                    <div class="label text-white">Clients et Partenaires</div>
                 </div>
                 
                 <div class="col-md-3 col-sm-6">
-                    <div class="number">317M+</div>
-                    <div class="label">FCFA De Capital</div>
+                    <div class="number text-black">317M+</div>
+                    <div class="label text-white">FCFA De Capital</div>
                 </div>
             </div>
         </div>
@@ -440,15 +501,15 @@
         <div class="container trusted-section">
             <h2 class="trusted-title">Ils nous font confiance</h2>
             <div class="d-flex flex-wrap justify-content-center align-items-center trusted-logos">
-                <img src="koica.png" alt="KOICA">
+                <img src="{{ asset('img/fayacomputer.jpeg')}}" alt="FAYA COMPUTER">
                 <span class="dot-separator">•</span>
-                <img src="g4s.png" alt="G4S">
+                <img src="" alt="PROVENDERIE LA DIFFERENCE">
                 <span class="dot-separator">•</span>
-                <img src="fokou.png" alt="Fokou">
+                <img src="" alt="">
                 <span class="dot-separator">•</span>
-                <img src="lafalaise.png" alt="La Falaise">
+                <img src="" alt="">
                 <span class="dot-separator">•</span>
-                <img src="edf.png" alt="EDF">
+                <img src="" alt="">
             </div>
         </div>
         <div class="container newsletter-section text-center">
@@ -473,21 +534,21 @@
     <div class="row text-center text-md-start">
       <!-- Téléphones -->
       <div class="col-md-4 mb-4">
-        <p><i class="fas fa-phone"></i> (+237) 242 139 545</p>
-        <p><i class="fas fa-phone"></i> (+237) 694 754 518</p>
+        <p><i class="fas fa-phone"></i> (+237) 655 27 15 06</p>
+        <p><i class="fas fa-phone"></i> (+237) 00 00 00 00</p>
       </div>
 
       <!-- Logo + Emails -->
       <div class="col-md-4 mb-4 text-center">
-        <img src="logo-matrix.png" alt="Logo Matrix" class="footer-logo">
-        <p><i class="fas fa-envelope"></i> info@matrixtelecoms.com</p>
-        <p><i class="fas fa-globe"></i> <a href="https://www.matrixtelecoms.com" target="_blank">www.matrixtelecoms.com</a></p>
+        <img src="logo-matrix.png" alt="Logo AB COMPTA" class="footer-logo">
+        <p><i class="fas fa-envelope"></i> abgroup022@gmail.com</p>
+        <p><i class="fas fa-globe"></i> <a href="" target="_blank">AB GROUP SARL</a></p>
       </div>
 
       <!-- Adresse -->
       <div class="col-md-4 mb-4">
-        <p><i class="fas fa-location-dot"></i> Omnisports / route de Ngousso</p>
-        <p><i class="fas fa-map-marker-alt"></i> BP: 4124 Yaoundé, Cameroun</p>
+        <p><i class="fas fa-location-dot"></i> SOA / Fin goudron</p>
+        <p><i class="fas fa-map-marker-alt"></i> BP: Yaoundé, Cameroun</p>
       </div>
     </div>
   </div>

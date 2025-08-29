@@ -1,6 +1,33 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.8"
+    "@symfony/stimulus-bridge": "^4.0.1",
+    "@symfony/webpack-encore": "^5.2.0",
+    "babel-loader": "^10.0.0",
+    "bootstrap": "4.5.2",
+    "sass": "^1.91.0",
+    "sass-loader": "^16.0.5",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-notifier": "1.15.0"
+  },
+  "scripts": {
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
+    "@hotwired/stimulus": "^3.2.2",
+    "animate.css": "^4.1.1",
+    "chart.js": "^4.5.0",
+    "core-js": "3",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
+    "startbootstrap-sb-admin-2": "^4.1.4",
+    "wow.js": "^1.2.2"
   }
 }

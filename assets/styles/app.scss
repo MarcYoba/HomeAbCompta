@@ -1,0 +1,15 @@
+
+
+// Import des variables et mixins en premier
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Ensuite les bibliothèques
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~animate.css/animate.min.css";
+@import "~startbootstrap-sb-admin-2/css/sb-admin-2.min.css";
+
+// Vos styles personnalisés en dernier
+// etc.
