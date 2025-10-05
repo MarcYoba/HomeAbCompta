@@ -1,0 +1,342 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SolutionController!{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisualShowcase - Portfolio & Galerie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <link rel="stylesheet" href="{{ asset('css/propos.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+</head>
+<body>
+    <!-- Navigation -->
+    {% include "navbar.html.twig" %}
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+        <!-- Élément vidéo -->
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="{{asset('img/a.mp4')}}" type="video/mp4">
+                <!-- Source de secours -->
+                <source src="votre-video.webm" type="video/webm">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+            
+            <!-- Overlay sombre -->
+            <div class="video-overlay"></div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1>AB COMPTA</h1>
+                    <p>Votre vision, notre objectif. Capturons l'essentiel.</p>
+                    <a href="{{path('app_contact')}}" class="btn btn-outline-light btn-lg">Me Contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    {# <section id="portfolio" class="py-5" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mon Portfolio</h2>
+                <p class="mt-3">Une sélection de mes meilleurs travaux</p>
+            </div>
+
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="paysage">Paysage</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="creatif">Créatif</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item" data-category="portrait">
+                    <a href="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Portrait féminin">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portrait">
+                        <div class="gallery-overlay">
+                            <h4>Portrait Féminin</h4>
+                            <p>Photographie de portrait en studio</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item" data-category="paysage">
+                    <a href="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Paysage montagneux">
+                        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paysage">
+                        <div class="gallery-overlay">
+                            <h4>Montagnes</h4>
+                            <p>Paysage naturel au coucher du soleil</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item" data-category="architecture">
+                    <a href="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Architecture moderne">
+                        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Architecture">
+                        <div class="gallery-overlay">
+                            <h4>Bâtiment Moderne</h4>
+                            <p>Architecture contemporaine</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item" data-category="creatif">
+                    <a href="https://images.unsplash.com/photo-1542744095-04b38d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Art abstrait">
+                        <img src="https://images.unsplash.com/photo-1542744095-04b38d8d8d8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Art abstrait">
+                        <div class="gallery-overlay">
+                            <h4>Composition Abstraite</h4>
+                            <p>Photographie artistique et créative</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item" data-category="portrait">
+                    <a href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Portrait masculin">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portrait masculin">
+                        <div class="gallery-overlay">
+                            <h4>Portrait Masculin</h4>
+                            <p>Photographie en extérieur</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item" data-category="paysage">
+                    <a href="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" data-lightbox="portfolio" data-title="Forêt brumeuse">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Forêt">
+                        <div class="gallery-overlay">
+                            <h4>Forêt Brumeuse</h4>
+                            <p>Paysage naturel en forêt</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section> #}
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos de Nous</h2>
+                <p class="mt-3">Découvrez l'artiste derrière l'objectif</p>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="profile-img">
+                        <img src="{{ asset('img/matin.jpg')}}" alt="Photographe">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Qui sommes-nous ?</h3>
+                    <p class="mb-4">
+                        AB COMPTA  
+                        avec une facilité d'adaptation et grand fans des challenge. 
+                        j'aime apprendre et explorer les nouvelles filières, C'est l'une des raisons qui m'a poussé d'embrasser la gestion des activite d'une entrepeise.
+                         je rêve d'une nouvelle Afrique avec une jeunesse conscience des défis économiques,
+                         politiques et culturels qui les attendent.
+                    </p>
+                    
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <div class="skill-name">
+                                <span>Dr veterinaire</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-bar">
+                            <div class="skill-name">
+                                <span>entrepreneurs</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-bar">
+                            <div class="skill-name">
+                                <span>Busnesse</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary mt-4">Travaillons Ensemble</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Témoignages Clients</h2>
+                <p class="mt-3">Ce que disent mes clients</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"AB COMPTA  capture des moments précieux de notre travail avec une sensibilité incroyable. 
+                        Chaque action raconte une histoire et évoque des émotions authentiques."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="client-img">
+                                <img src="{{asset('img/dashboard.png')}}" alt="Client">
+                            </div>
+                            <div>
+                                <h5>Dr Toukam</h5>
+                                <p class="text-muted mb-0">Directeur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Le travail de AB COMPTA entreprise a dépassé nos attentes. 
+                        Et son attention aux détails ont donné vie à notre vision."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="client-img">
+                                <img src="{{asset('img/reporting.jpeg')}}" alt="Client">
+                            </div>
+                            <div>
+                                <h5>Dr Yemelong</h5>
+                                <p class="text-muted mb-0">Directeur </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"
+                        Il a su mettre tout le monde à l'aise et capturer notre dynamique  avec authenticité."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="client-img">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client">
+                            </div>
+                            <div>
+                                <h5>Nouebissi</h5>
+                                <p class="text-muted mb-0">Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    
+
+    <!-- Footer -->
+    {% include "footer.html.twig" %}
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Portfolio filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Initialize Lightbox
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'imageFadeDuration': 300,
+                'positionFromTop': 100
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

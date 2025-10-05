@@ -15,4 +15,12 @@ class SolutionController extends AbstractController
             'controller_name' => 'SolutionController',
         ]);
     }
+
+    #[Route('/solution/a/propos/de/nous', name: 'app_solution_propos')]
+    public function propos(): Response
+    {
+        return $this->render('solution/propos.html.twig', [
+            'controller_name' => 'SolutionController',
+        ]);
+    }
 }
