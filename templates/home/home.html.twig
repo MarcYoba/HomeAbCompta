@@ -1,3 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,73 +19,7 @@
 <body>
     <!-- Navigation -->
     
-        <div class="contact-bar">
-               <div class="contact-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Contact : 655271506  
-                    <i class="fas fa-envelope ms-3"></i>
-                    Email : Abgroup022@gmail.com 
-                </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="contact-right d-flex align-items-center" id="navbarNav">
-                <div  class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-                </div >
-            </div>
-        </div>
-    
-    <nav class="navbar navbar-expand-lg navbar-custom">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <strong>AB COMPTA</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                </li>
-
-                <!-- A Propos corrigé -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        A Propos
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
-                        <li><h6 class="dropdown-header">À propos de nous</h6></li>
-                        <li><a class="dropdown-item" href="#">Notre historique</a></li>
-                        <li><a class="dropdown-item" href="#">Notre équipe</a></li>
-                        <li><a class="dropdown-item" href="#">Notre mission</a></li>
-                    </ul>
-                </li>
-
-                <!-- Nos solutions corrigé -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSolutions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Nos solutions
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownSolutions">
-                        <li><h6 class="dropdown-header">Nos services</h6></li>
-                        <li><a class="dropdown-item" href="#">Provenderie</a></li>
-                        <li><a class="dropdown-item" href="#">Cabinet veterinaire</a></li>
-                        <li><a class="dropdown-item" href="#">CCommerce generale</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        {% include "navbar.html.twig" %}
 
     <div id="monCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <!-- Indicateurs -->
@@ -306,3 +245,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+{% endblock %}
