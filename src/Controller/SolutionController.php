@@ -23,4 +23,12 @@ class SolutionController extends AbstractController
             'controller_name' => 'SolutionController',
         ]);
     }
+
+    #[Route('/solution/equipe', name: 'app_solution_equipe')]
+    public function Equipe(): Response
+    {
+        return $this->render('solution/equipe.html.twig', [
+            'controller_name' => 'SolutionController',
+        ]);
+    }
 }

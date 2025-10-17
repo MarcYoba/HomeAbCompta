@@ -40,7 +40,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
                         <li><h6 class="dropdown-header">À propos de nous</h6></li>
                         <li><a class="dropdown-item" href="{{path('app_solution_propos')}}">Notre historique</a></li>
-                        <li><a class="dropdown-item" href="#">Notre équipe</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_solution_equipe')}}">Notre équipe</a></li>
                         <li><a class="dropdown-item" href="#">Notre mission</a></li>
                     </ul>
                 </li>
@@ -52,14 +52,17 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownSolutions">
                         <li><h6 class="dropdown-header">Nos services</h6></li>
-                        <li><a class="dropdown-item" href="{{ path('app_solution_provenderie')}}">Provenderie</a></li>
-                        <li><a class="dropdown-item" href="#">Cabinet veterinaire</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_solution_provenderie')}}">Provenderie / cabinet</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_formation')}}">Formation</a></li>
                         <li><a class="dropdown-item" href="#">CCommerce generale</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_contact')}}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_entreprise')}}">Entreprise</a>
                 </li>
             </ul>
         </div>
