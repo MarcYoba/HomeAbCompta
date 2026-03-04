@@ -23,7 +23,7 @@ class EntrepriseController extends AbstractController
         $sql = 'SELECT * FROM agence ORDER BY id DESC';
         $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $agence = array_pop($agence); // Récupère la première agence (la plus récente)
-       //dd($vente);
+       dd($vente);
         return $this->render('entreprise/index.html.twig', [
             'controller_name' => 'EntrepriseController',
             'vente' => $vente,
