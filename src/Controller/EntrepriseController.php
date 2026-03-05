@@ -26,10 +26,10 @@ class EntrepriseController extends AbstractController
         $agence = array_shift($agence); // Récupère la première agence (la plus récente)
 
         $tnk = $em->getConnection('secondary');
-        dd($tnk);
         $bd+=1;
         $sql = 'SELECT * FROM vente ORDER BY id DESC';
         $tkn = $tnk->executeQuery($sql)->fetchAllAssociative();
+        dd($tkn);
         $nbtkn = count($tkn);
         $tkn = array_shift($tkn); // Récupère la première vente
         
