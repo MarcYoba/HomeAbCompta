@@ -7,6 +7,8 @@ doctrine:
                     url: '%env(resolve:SECONDARY_DATABASE_URL)%'
                 Tertiary:
                     url: '%env(resolve:Tertiary_DATABASE_URL)%'
+                Quaternary:
+                    url: '%env(resolve:Quaternary_DATABASE_URL)%'
                     use_savepoints: true
     # IMPORTANT: You MUST configure your server version,
     # either here or in the DATABASE_URL env var (see .env file)
@@ -41,6 +43,14 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Entity/Tertiary'
                         prefix: 'App\Entity\Tertiary'
                         alias: AppTertiary
+            Quaternary :
+                connection: Quaternary
+                mappings:
+                    AppQuaternary:
+                        is_bundle: false
+                        dir: '%kernel.project_dir%/src/Entity/Quaternary'
+                        prefix: 'App\Entity\Quaternary'
+                        alias: AppQuaternary
 
 when@test:
     doctrine:

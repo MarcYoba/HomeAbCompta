@@ -58,6 +58,21 @@ class EntrepriseController extends AbstractController
         $agencetriky = $rky->executeQuery($sql)->fetchAllAssociative();
         $agencetriky = array_shift($agencetriky);
 
+        $katng = $doctrine->getConnection('Quaternary');
+        $bd+=1;
+
+        $sql = 'SELECT * FROM vente_a ORDER BY id DESC';
+        $ventekatng = $katng->executeQuery($sql)->fetchAllAssociative();
+        $nbvemntekatng = count($ventekatng);
+        $katanga = array_shift($ventekatng); // Récupère la première vente (la plus récente)
+        $ktinterval = $date->diff(new \DateTimeImmutable($katanga['create_at']));
+        $ktinterval = $ktinterval->format('%a jours');
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetkatang = $katng->executeQuery($sql)->fetchAllAssociative();
+        $agencetkatang = array_shift($agencetkatang);
+
+
        //dd($vente);
         return $this->render('entreprise/index.html.twig', [
             'controller_name' => 'EntrepriseController',
@@ -76,6 +91,11 @@ class EntrepriseController extends AbstractController
             'agencetriky' => $agencetriky,
             'nbriky' => $nbriky,
             'rikyinterval' => $rikyinterval,
+
+            'katanga' => $katanga,
+            'agencetkatang' => $agencetkatang,
+            'nbvemntekatng' => $nbvemntekatng,
+            'ktinterval' => $ktinterval,
         ]);
     }
 }

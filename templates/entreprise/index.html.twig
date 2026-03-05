@@ -18,7 +18,7 @@
                     </div>
                     <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
                         <i class="fas fa-bullseye me-2"></i> 
-                        Entreprise : <span class="fw-bold">{{ agence["nom"] }}</span> 
+                        Entreprise : <span class="fw-bold">{{ agence["nom"] }}</span> <br>
                         <span class="d-none d-md-inline"> -> {{ agence["presentation"] }}</span>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
                         <i class="fas fa-bullseye me-2"></i> 
-                        Entreprise : <span class="fw-bold">{{ agencetnk["nom"] }}</span> 
+                        Entreprise : <span class="fw-bold">{{ agencetnk["nom"] }}</span> <br>
                         <span class="d-none d-md-inline"> -> {{ agencetnk["presentation"] }}</span>
                     </div>
                 </div>
@@ -130,6 +130,7 @@
             </div>
         </div>
     </div>
+
     <div class="row mt-5 justify-content-center">
         {# --- CARTE ENTREPRISE 3 --- #}
         <div class="col-12 col-xl-5">
@@ -141,7 +142,7 @@
                     </div>
                     <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
                         <i class="fas fa-bullseye me-2"></i> 
-                        Entreprise : <span class="fw-bold">{{ agencetriky["nom"] }}</span> 
+                        Entreprise : <span class="fw-bold">{{ agencetriky["nom"] }}</span> <br>
                         <span class="d-none d-md-inline"> -> {{ agencetriky["presentation"] }}</span>
                     </div>
                 </div>
@@ -185,7 +186,67 @@
                         <i class="fas fa-quote-left text-primary opacity-50 me-2"></i>
                         <strong>Points forts :</strong> Algèbre... <strong>À travailler :</strong> Trigonométrie...
                     </div>
-                    <a href="https://tknsarl.com" class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
+                    <a href="https://estriky.com" class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
+                        Consulter l'analyse <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg p-4" style="border-radius: 32px;">
+                <div class="d-flex justify-content-between align-items-baseline flex-wrap mb-4">
+                    <div>
+                        <span class="display-5 fw-bold text-dark">3</span>
+                        <span class="h3 text-muted">/{{ bd }}</span>
+                    </div>
+                    <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
+                        <i class="fas fa-bullseye me-2"></i> 
+                        Entreprise : <span class="fw-bold">{{ agencetkatang["nom"] }}</span> <br>
+                        <span class="d-none d-md-inline"> -> {{ agencetkatang["presentation"] }}</span>
+                    </div>
+                </div>
+
+                <div class="row g-3 p-3 mb-4 rounded-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #dcfce7; color: #166534;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Ventes</small>
+                            <div class="h4 mb-0 fw-bold">{{ nbvemntekatng }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fee2e2; color: #991b1b;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Dernière</small>
+                            <div class="h6 mb-0 fw-bold">{{ katanga["create_at"] | date('Y-m-d') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fef9c3; color: #854d0e;">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Non traitées</small>
+                            <div class="h4 mb-0 fw-bold">{{ktinterval}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 mt-2" style="border-top: 2px dashed #cbd5e1;">
+                    <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
+                        <i class="fas fa-chart-line text-primary"></i> Evaluation Performance
+                        <span class="badge bg-dark rounded-pill shadow-sm" style="font-size: 0.7rem;">beta</span>
+                    </h5>
+                    <div class="p-3 mb-4 rounded-3" style="background: #f1f5f9; border-left: 4px solid #3b82f6;">
+                        <i class="fas fa-quote-left text-primary opacity-50 me-2"></i>
+                        <strong>Points forts :</strong> Algèbre... <strong>À travailler :</strong> Trigonométrie...
+                    </div>
+                    <a href="https://ab-counting.com " class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
                         Consulter l'analyse <i class="fas fa-arrow-right ms-2"></i>
                     </a>
                 </div>
