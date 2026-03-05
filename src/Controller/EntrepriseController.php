@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class EntrepriseController extends AbstractController
 {
     #[Route('/entreprise', name: 'app_entreprise')]
-    public function index(EntityManagerInterface $em): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
         $bd = 0;
-        $abgroup = $em->getConnection();
+        $abgroup = $doctrine->getConnection();
         $bd+=1;
 
         $sql = 'SELECT * FROM vente_a ORDER BY id DESC';
@@ -25,7 +26,7 @@ class EntrepriseController extends AbstractController
         $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $agence = array_shift($agence); // Récupère la première agence (la plus récente)
 
-        $tnk = $em->getConnection('secondary');
+        $tnk = $doctrine->getConnection('secondary');
         $bd+=1;
         $sql = 'SELECT * FROM vente ORDER BY id DESC';
         $tkn = $tnk->executeQuery($sql)->fetchAllAssociative();
