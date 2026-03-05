@@ -18,12 +18,23 @@ class EntrepriseController extends AbstractController
 
         $sql = 'SELECT * FROM vente_a ORDER BY id DESC';
         $vente = $abgroup->executeQuery($sql)->fetchAllAssociative();
-        $nbvemnte = count($vente);
+        $nbvemnteabgroup = count($vente);
         $vente = array_shift($vente); // Récupère la première vente (la plus récente)
 
         $sql = 'SELECT * FROM agence ORDER BY id DESC';
         $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $agence = array_shift($agence); // Récupère la première agence (la plus récente)
+
+        $tnk = $em->getConnection('secondary');
+        $bd+=1;
+        $sql = 'SELECT * FROM vente ORDER BY id DESC';
+        $tkn = $tnk->executeQuery($sql)->fetchAllAssociative();
+        $nbtkn = count($tkn);
+        $tkn = array_shift($tkn); // Récupère la première vente
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetnk = $tnk->executeQuery($sql)->fetchAllAssociative();
+        $agencetnk = array_shift($agencetnk);
         
        //dd($vente);
         return $this->render('entreprise/index.html.twig', [
@@ -31,7 +42,10 @@ class EntrepriseController extends AbstractController
             'vente' => $vente,
             'agence' => $agence,
             'bd' => $bd,
-            'nbvente' => $nbvemnte,
+            'nbvente' => $nbvemnteabgroup,
+            'nbtkn' => $nbtkn,
+            'tkn' => $tkn,
+            'agencetnk' => $agencetnk,
         ]);
     }
 }
