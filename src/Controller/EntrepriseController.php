@@ -30,7 +30,7 @@ class EntrepriseController extends AbstractController
         $bd+=1;
         $sql = 'SELECT * FROM vente ORDER BY id DESC';
         $tkn = $tnk->executeQuery($sql)->fetchAllAssociative();
-        dd($tnk);
+        
         $nbtkn = count($tkn);
         $tkn = array_shift($tkn); // Récupère la première vente
         
