@@ -234,72 +234,273 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="card">
-        <!-- Score et précision -->
-        <div class="score-header">
-            <div class="score-main">
-                <span class="score-number">{{ bd }}</span>
-                <span class="score-total">/20</span>
+    <div class="row">
+        <div class="card">
+            <!-- Score et précision -->
+            <div class="score-header">
+                <div class="score-main">
+                    <span class="score-number">{{ bd }}</span>
+                    <span class="score-total">/20</span>
+                </div>
+                <div class="accuracy">
+                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} €
+                </div>
             </div>
-            <div class="accuracy">
-                <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} €
+
+            <!-- Statistiques Right / Wrong / Skipped -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon right">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">vente</span>
+                        <span class="stat-value">{{ nbvente }}</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon wrong">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Derniere vente</span>
+                        <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon skipped">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Skipped</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strengths and Growth Areas -->
+            <div class="strengths-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
+                    <span>beta</span>
+                </div>
+
+                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
+                <div class="strengths-preview">
+                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
+                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                </div>
+
+                <!-- Bouton d'analyse -->
+                <a href="https://abgroupsarl.com" class="btn-analyze">
+                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
+                        Consulter l'analyse détaillée
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </a>
             </div>
         </div>
 
-        <!-- Statistiques Right / Wrong / Skipped -->
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-icon right">
-                    <i class="fas fa-check"></i>
+        <div class="card">
+            <!-- Score et précision -->
+            <div class="score-header">
+                <div class="score-main">
+                    <span class="score-number">{{ bd }}</span>
+                    <span class="score-total">/20</span>
                 </div>
-                <div class="stat-content">
-                    <span class="stat-label">vente</span>
-                    <span class="stat-value">{{ nbvente }}</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon wrong">
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-label">Derniere vente</span>
-                    <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
+                <div class="accuracy">
+                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} €
                 </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-icon skipped">
-                    <i class="fas fa-ban"></i>
+
+            <!-- Statistiques Right / Wrong / Skipped -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon right">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">vente</span>
+                        <span class="stat-value">{{ nbvente }}</span>
+                    </div>
                 </div>
-                <div class="stat-content">
-                    <span class="stat-label">Skipped</span>
-                    <span class="stat-value">0</span>
+                <div class="stat-item">
+                    <div class="stat-icon wrong">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Derniere vente</span>
+                        <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
+                    </div>
                 </div>
+                <div class="stat-item">
+                    <div class="stat-icon skipped">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Skipped</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strengths and Growth Areas -->
+            <div class="strengths-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
+                    <span>beta</span>
+                </div>
+
+                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
+                <div class="strengths-preview">
+                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
+                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                </div>
+
+                <!-- Bouton d'analyse -->
+                <a href="https://abgroupsarl.com" class="btn-analyze">
+                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
+                        Consulter l'analyse détaillée
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </a>
             </div>
         </div>
 
-        <!-- Strengths and Growth Areas -->
-        <div class="strengths-section">
-            <div class="section-title">
-                <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
-                <span>beta</span>
+        <div class="card">
+            <!-- Score et précision -->
+            <div class="score-header">
+                <div class="score-main">
+                    <span class="score-number">{{ bd }}</span>
+                    <span class="score-total">/20</span>
+                </div>
+                <div class="accuracy">
+                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} €
+                </div>
             </div>
 
-            <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
-            <div class="strengths-preview">
-                <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
-                <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+            <!-- Statistiques Right / Wrong / Skipped -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon right">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">vente</span>
+                        <span class="stat-value">{{ nbvente }}</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon wrong">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Derniere vente</span>
+                        <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon skipped">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Skipped</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Bouton d'analyse -->
-            <a href="https://abgroupsarl.com" class="btn-analyze">
-                <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
-                    Consulter l'analyse détaillée
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </a>
+            <!-- Strengths and Growth Areas -->
+            <div class="strengths-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
+                    <span>beta</span>
+                </div>
+
+                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
+                <div class="strengths-preview">
+                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
+                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                </div>
+
+                <!-- Bouton d'analyse -->
+                <a href="https://abgroupsarl.com" class="btn-analyze">
+                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
+                        Consulter l'analyse détaillée
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </a>
+            </div>
         </div>
+
+
+        <div class="card">
+            <!-- Score et précision -->
+            <div class="score-header">
+                <div class="score-main">
+                    <span class="score-number">{{ bd }}</span>
+                    <span class="score-total">/20</span>
+                </div>
+                <div class="accuracy">
+                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} €
+                </div>
+            </div>
+
+            <!-- Statistiques Right / Wrong / Skipped -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon right">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">vente</span>
+                        <span class="stat-value">{{ nbvente }}</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon wrong">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Derniere vente</span>
+                        <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon skipped">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Skipped</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strengths and Growth Areas -->
+            <div class="strengths-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
+                    <span>beta</span>
+                </div>
+
+                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
+                <div class="strengths-preview">
+                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
+                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                </div>
+
+                <!-- Bouton d'analyse -->
+                <a href="https://abgroupsarl.com" class="btn-analyze">
+                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
+                        Consulter l'analyse détaillée
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    
     </div>
-
     <!-- Note : dans un template Symfony, remplacez les valeurs statiques par des variables Twig -->
 </body>
 </html>
