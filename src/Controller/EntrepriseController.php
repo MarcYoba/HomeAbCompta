@@ -16,11 +16,15 @@ class EntrepriseController extends AbstractController
         $bd = 0;
         $abgroup = $doctrine->getConnection();
         $bd+=1;
+        $date = new \DateTimeImmutable();
 
         $sql = 'SELECT * FROM vente_a ORDER BY id DESC';
         $vente = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $nbvemnteabgroup = count($vente);
         $vente = array_shift($vente); // Récupère la première vente (la plus récente)
+        $abinterval = $date->diff(new \DateTimeImmutable($vente['create_at']));
+        $abinterval = $abinterval->format('%a jours');
+        
 
         $sql = 'SELECT * FROM agence ORDER BY id DESC';
         $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
@@ -30,14 +34,30 @@ class EntrepriseController extends AbstractController
         $bd+=1;
         $sql = 'SELECT * FROM vente ORDER BY id DESC';
         $tkn = $tnk->executeQuery($sql)->fetchAllAssociative();
-        
         $nbtkn = count($tkn);
         $tkn = array_shift($tkn); // Récupère la première vente
-        
+        $tkninterval = $date->diff(new \DateTimeImmutable($tkn['created_at']));
+        $tkninterval = $tkninterval->format('%a jours');
+
         $sql = 'SELECT * FROM agence ORDER BY id DESC';
         $agencetnk = $tnk->executeQuery($sql)->fetchAllAssociative();
         $agencetnk = array_shift($agencetnk);
+
+        $rky = $doctrine->getConnection('Tertiary');
+        $bd+=1;
         
+        $sql = 'SELECT * FROM vente ORDER BY id DESC';
+        $riky = $rky->executeQuery($sql)->fetchAllAssociative();
+        $nbriky = count($riky);
+        $riky = array_shift($riky); // Récupère la première vente
+        $rikyinterval = $date->diff(new \DateTimeImmutable($riky['created_at']));
+        $rikyinterval = $rikyinterval->format('%a jours');
+
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetriky = $rky->executeQuery($sql)->fetchAllAssociative();
+        $agencetriky = array_shift($agencetriky);
+
        //dd($vente);
         return $this->render('entreprise/index.html.twig', [
             'controller_name' => 'EntrepriseController',
@@ -46,8 +66,16 @@ class EntrepriseController extends AbstractController
             'bd' => $bd,
             'nbvente' => $nbvemnteabgroup,
             'nbtkn' => $nbtkn,
+            
             'tkn' => $tkn,
             'agencetnk' => $agencetnk,
+            'abinterval' => $abinterval,
+            'tkninterval' => $tkninterval,
+
+            'riky' => $riky,
+            'agencetriky' => $agencetriky,
+            'nbriky' => $nbriky,
+            'rikyinterval' => $rikyinterval,
         ]);
     }
 }

@@ -3,373 +3,195 @@
 {% block title %}Entreprise!{% endblock %}
 
 {% block body %}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord - Performance</title>
-    <style>
-        /* RESET & BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(145deg, #f6f8fc 0%, #eef2f6 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .card {
-            max-width: 700px;
-            width: 100%;
-            background-color: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            padding: 2rem 2.25rem;
-            transition: all 0.2s ease;
-        }
-
-        /* SCORE SECTION */
-        .score-header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .score-main {
-            display: flex;
-            align-items: baseline;
-            gap: 0.25rem;
-        }
-
-        .score-number {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: #1e293b;
-            line-height: 1;
-        }
-
-        .score-total {
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: #64748b;
-            margin-left: 0.2rem;
-        }
-
-        .accuracy {
-            background: #e9f4ff;
-            padding: 0.6rem 1.2rem;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #0369a1;
-            letter-spacing: 0.3px;
-            border: 1px solid rgba(2, 106, 162, 0.15);
-        }
-
-        /* STATS ROWS (Right / Wrong / Skipped) */
-        .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem 2rem;
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2.2rem;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex: 1 1 130px;
-        }
-
-        .stat-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .stat-icon.right {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .stat-icon.wrong {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .stat-icon.skipped {
-            background: #fef9c3;
-            color: #854d0e;
-        }
-
-        .stat-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-
-        /* STRENGTHS & GROWTH AREAS */
-        .strengths-section {
-            border-top: 2px dashed #cbd5e1;
-            padding-top: 1.8rem;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title span {
-            background: #1e293b;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.2rem 0.8rem;
-            border-radius: 40px;
-        }
-
-        .strengths-preview {
-            background: #f1f5f9;
-            border-radius: 18px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1.8rem;
-            color: #334155;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .strengths-preview strong {
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        /* BOUTON ANALYZE */
-        .btn-analyze {
-            background: #0f172a;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            padding: 0.9rem 2.2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 8px 18px -6px rgba(15, 23, 42, 0.2);
-            border: 1px solid #1e293b;
-        }
-
-        .btn-analyze:hover {
-            background: #1e293b;
-            transform: scale(1.02);
-        }
-
-        .btn-analyze:active {
-            transform: scale(0.98);
-        }
-
-        .btn-analyze i {
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-        }
-
-        .btn-analyze:hover i {
-            transform: translateX(4px);
-        }
-
-        /* petite adaptation mobile */
-        @media (max-width: 480px) {
-            .card { padding: 1.5rem; }
-            .score-number { font-size: 2.8rem; }
-            .score-total { font-size: 1.4rem; }
-            .accuracy { font-size: 0.95rem; }
-            .stats-grid { padding: 1.2rem; gap: 1rem; }
-            .stat-value { font-size: 1.6rem; }
-        }
-    </style>
-    <!-- Pour les icônes on utilise des entités simples ou Font Awesome (optionnel) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <div class="form-group row">
-        <div class="card col-md-4">
-            <!-- Score et précision -->
-            <div class="score-header">
-                <div class="score-main">
-                    <span class="score-number">1</span>
-                    <span class="score-total">/{{ bd }}</span>
-                </div>
-                <div class="accuracy">
-                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agence["nom"]}} -> {{ agence["presentation"] }} 
-                </div>
-            </div>
-
-            <!-- Statistiques Right / Wrong / Skipped -->
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon right">
-                        <i class="fas fa-check"></i>
+<div class="container-fluid py-5" style="background: linear-gradient(145deg, #f6f8fc 0%, #eef2f6 100%); min-height: 100vh;">
+    <div class="row g-4 justify-content-center">
+        
+        {# --- CARTE ENTREPRISE 1 --- #}
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg p-4" style="border-radius: 32px;">
+                <div class="d-flex justify-content-between align-items-baseline flex-wrap mb-4">
+                    <div>
+                        <span class="display-5 fw-bold text-dark">1</span>
+                        <span class="h3 text-muted">/{{ bd }}</span>
                     </div>
-                    <div class="stat-content">
-                        <span class="stat-label">vente</span>
-                        <span class="stat-value">{{ nbvente }}</span>
+                    <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
+                        <i class="fas fa-bullseye me-2"></i> 
+                        Entreprise : <span class="fw-bold">{{ agence["nom"] }}</span> 
+                        <span class="d-none d-md-inline"> -> {{ agence["presentation"] }}</span>
                     </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon wrong">
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <div class="stat-content">
-                        <span class="stat-label">Derniere vente</span>
-                        <span class="stat-value">{{ vente["create_at"] | date('Y-m-d') }} </span>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon skipped">
-                        <i class="fas fa-ban"></i>
-                    </div>
-                    <div class="stat-content">
-                        <span class="stat-label">Skipped</span>
-                        <span class="stat-value">0</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Strengths and Growth Areas -->
-            <div class="strengths-section">
-                <div class="section-title">
-                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
-                    <span>beta</span>
-                </div>
-
-                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
-                <div class="strengths-preview">
-                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
-                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                <div class="row g-3 p-3 mb-4 rounded-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #dcfce7; color: #166534;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Ventes</small>
+                            <div class="h4 mb-0 fw-bold">{{ nbvente }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fee2e2; color: #991b1b;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Dernière</small>
+                            <div class="h6 mb-0 fw-bold">{{ vente["create_at"] | date('Y-m-d') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fef9c3; color: #854d0e;">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Non traitées</small>
+                            <div class="h4 mb-0 fw-bold">{{ abinterval }}</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Bouton d'analyse -->
-                <a href="https://abgroupsarl.com" class="btn-analyze">
-                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
-                        Consulter l'analyse détaillée
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </a>
+                <div class="pt-4 mt-2" style="border-top: 2px dashed #cbd5e1;">
+                    <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
+                        <i class="fas fa-chart-line text-primary"></i> Evaluation Performance
+                        <span class="badge bg-dark rounded-pill shadow-sm" style="font-size: 0.7rem;">beta</span>
+                    </h5>
+                    <div class="p-3 mb-4 rounded-3" style="background: #f1f5f9; border-left: 4px solid #3b82f6;">
+                        <i class="fas fa-quote-left text-primary opacity-50 me-2"></i>
+                        <strong>Points forts :</strong> Algèbre... <strong>À travailler :</strong> Trigonométrie...
+                    </div>
+                    <a href="https://abgroupsarl.com" class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
+                        Consulter l'analyse <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class=" col-md-2">
+
+        {# --- CARTE ENTREPRISE 2 --- #}
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg p-4" style="border-radius: 32px;">
+                <div class="d-flex justify-content-between align-items-baseline flex-wrap mb-4">
+                    <div>
+                        <span class="display-5 fw-bold text-dark">2</span>
+                        <span class="h3 text-muted">/{{ bd }}</span>
+                    </div>
+                    <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
+                        <i class="fas fa-bullseye me-2"></i> 
+                        Entreprise : <span class="fw-bold">{{ agencetnk["nom"] }}</span> 
+                        <span class="d-none d-md-inline"> -> {{ agencetnk["presentation"] }}</span>
+                    </div>
+                </div>
+
+                <div class="row g-3 p-3 mb-4 rounded-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #dcfce7; color: #166534;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Ventes</small>
+                            <div class="h4 mb-0 fw-bold">{{ nbtkn }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fee2e2; color: #991b1b;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Dernière</small>
+                            <div class="h6 mb-0 fw-bold">{{ tkn["created_at"] | date('Y-m-d') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fef9c3; color: #854d0e;">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Non traitées</small>
+                            <div class="h4 mb-0 fw-bold">{{tkninterval}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 mt-2" style="border-top: 2px dashed #cbd5e1;">
+                    <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
+                        <i class="fas fa-chart-line text-primary"></i> Evaluation Performance
+                        <span class="badge bg-dark rounded-pill shadow-sm" style="font-size: 0.7rem;">beta</span>
+                    </h5>
+                    <div class="p-3 mb-4 rounded-3" style="background: #f1f5f9; border-left: 4px solid #3b82f6;">
+                        <i class="fas fa-quote-left text-primary opacity-50 me-2"></i>
+                        <strong>Points forts :</strong> Algèbre... <strong>À travailler :</strong> Trigonométrie...
+                    </div>
+                    <a href="https://tknsarl.com" class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
+                        Consulter l'analyse <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="card col-md-4">
-            <!-- Score et précision -->
-            <div class="score-header">
-                <div class="score-main">
-                    <span class="score-number">2</span>
-                    <span class="score-total">/{{ bd }}</span>
-                </div>
-                <div class="accuracy">
-                    <i class="fas fa-bullseye" style="margin-right: 6px;"></i> Entreprise : {{ agencetnk["nom"]}} -> {{ agencetnk["presentation"] }} 
-                </div>
-            </div>
-
-            <!-- Statistiques Right / Wrong / Skipped -->
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon right">
-                        <i class="fas fa-check"></i>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        {# --- CARTE ENTREPRISE 3 --- #}
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg p-4" style="border-radius: 32px;">
+                <div class="d-flex justify-content-between align-items-baseline flex-wrap mb-4">
+                    <div>
+                        <span class="display-5 fw-bold text-dark">3</span>
+                        <span class="h3 text-muted">/{{ bd }}</span>
                     </div>
-                    <div class="stat-content">
-                        <span class="stat-label">vente</span>
-                        <span class="stat-value">{{ nbtkn }}</span>
+                    <div class="badge rounded-pill p-3" style="background: #e9f4ff; color: #0369a1; border: 1px solid rgba(2, 106, 162, 0.15);">
+                        <i class="fas fa-bullseye me-2"></i> 
+                        Entreprise : <span class="fw-bold">{{ agencetriky["nom"] }}</span> 
+                        <span class="d-none d-md-inline"> -> {{ agencetriky["presentation"] }}</span>
                     </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon wrong">
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <div class="stat-content">
-                        <span class="stat-label">Derniere vente</span>
-                        <span class="stat-value">{{ tkn["created_at"] | date('Y-m-d') }} </span>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon skipped">
-                        <i class="fas fa-ban"></i>
-                    </div>
-                    <div class="stat-content">
-                        <span class="stat-label">Skipped</span>
-                        <span class="stat-value">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Strengths and Growth Areas -->
-            <div class="strengths-section">
-                <div class="section-title">
-                    <i class="fas fa-chart-line" style="color: #2563eb;"></i> Evaluation de la performance
-                    <span>beta</span>
                 </div>
 
-                <!-- Aperçu (simulé) de l'analyse - pourrait être remplacé par du contenu dynamique -->
-                <div class="strengths-preview">
-                    <i class="fas fa-quote-left" style="color: #3b82f6; opacity: 0.6; margin-right: 6px;"></i>
-                    <strong>Points forts :</strong> Algèbre, Géométrie · <strong>À travailler :</strong> Trigonométrie, Statistiques
+                <div class="row g-3 p-3 mb-4 rounded-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #dcfce7; color: #166534;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Ventes</small>
+                            <div class="h4 mb-0 fw-bold">{{ nbriky }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fee2e2; color: #991b1b;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Dernière</small>
+                            <div class="h6 mb-0 fw-bold">{{ riky["created_at"] | date('Y-m-d') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; background: #fef9c3; color: #854d0e;">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div>
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.75rem;">Non traitées</small>
+                            <div class="h4 mb-0 fw-bold">{{rikyinterval}}</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Bouton d'analyse -->
-                <a href="https://tknsarl.com " class="btn-analyze">
-                    <button class="btn-analyze" onclick="alert('Connexion au site en cours...')">
-                        Consulter l'analyse détaillée
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </a>
+                <div class="pt-4 mt-2" style="border-top: 2px dashed #cbd5e1;">
+                    <h5 class="fw-bold d-flex align-items-center gap-2 mb-3">
+                        <i class="fas fa-chart-line text-primary"></i> Evaluation Performance
+                        <span class="badge bg-dark rounded-pill shadow-sm" style="font-size: 0.7rem;">beta</span>
+                    </h5>
+                    <div class="p-3 mb-4 rounded-3" style="background: #f1f5f9; border-left: 4px solid #3b82f6;">
+                        <i class="fas fa-quote-left text-primary opacity-50 me-2"></i>
+                        <strong>Points forts :</strong> Algèbre... <strong>À travailler :</strong> Trigonométrie...
+                    </div>
+                    <a href="https://tknsarl.com" class="btn btn-dark btn-lg rounded-pill px-4 py-2 shadow w-100 w-md-auto">
+                        Consulter l'analyse <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
     </div>
-    <!-- Note : dans un template Symfony, remplacez les valeurs statiques par des variables Twig -->
-</body>
-</html>
+</div>
 {% endblock %}
