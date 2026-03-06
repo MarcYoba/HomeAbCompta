@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EntrepriseController extends AbstractController
@@ -97,5 +99,38 @@ class EntrepriseController extends AbstractController
             'nbvemntekatng' => $nbvemntekatng,
             'ktinterval' => $ktinterval,
         ]);
+    }
+
+    #[Route('/entreprise/connexion', name: 'app_entreprise_connexion')]
+    public function connexion(ManagerRegistry $doctrine, Request $request): Response
+    {
+        return $this->render('entreprise/connexion.html.twig', [
+            'controller_name' => 'EntrepriseController',
+        ]); 
+    }
+
+    #[Route('/entreprise/connexion/valider', name: 'app_entreprise_connexion_valider')]
+    public function connexionValider(ManagerRegistry $doctrine, Request $request, PasswordHasherFactoryInterface $hasherFactory): Response
+    {
+        if ($request->isMethod('POST')) {
+            $email = $request->request->get('email');
+            $password = $request->request->get('password');
+            $passwordHasher = $hasherFactory->getPasswordHasher('common');
+            
+            $haspassword = $passwordHasher->hash($password);
+
+            $sql = 'SELECT * FROM user WHERE email = :email';
+            $entreprise = $doctrine->getConnection()->executeQuery($sql, ['email' => $email])->fetchAssociative();
+
+            if (!$entreprise) {
+                return $this->redirectToRoute('index');
+            }
+
+            $hashEnBase = $entreprise['password'];
+            $estValide = $passwordHasher->verify($hashEnBase, $haspassword);
+            
+            return $this->redirectToRoute('app_entreprise');
+        }
+        return $this->redirectToRoute('app_entreprise_connexion');
     }
 }
