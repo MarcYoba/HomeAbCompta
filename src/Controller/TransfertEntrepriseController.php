@@ -50,4 +50,15 @@ class TransfertEntrepriseController extends AbstractController
             'AgenceKatang' => $agencetkatang,
         ]);
     }
+
+    #[Route('/tranfert/entreprise/katanga', name: 'app_transfert_entreprise_katanga')]
+    public function katanga(ManagerRegistry $doctrine): Response
+    {        $abgroup = $doctrine->getConnection();
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
+        $agence = array_shift($agence); // Récupère la première agence (la plus récente)
+        return $this->render('transfert_entreprise/katanga.html.twig', [
+            'AgenceKatang' => $agence,
+        ]);
+    }
 }
