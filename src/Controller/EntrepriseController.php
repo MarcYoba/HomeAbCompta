@@ -125,10 +125,10 @@ class EntrepriseController extends AbstractController
             if (!$entreprise) {
                 return $this->redirectToRoute('index');
             }
-
+            
             $hashEnBase = $entreprise['password'];
             $estValide = $passwordHasher->verify($hashEnBase, $haspassword);
-            
+
             return $this->redirectToRoute('app_entreprise');
         }
         return $this->redirectToRoute('app_entreprise_connexion');
