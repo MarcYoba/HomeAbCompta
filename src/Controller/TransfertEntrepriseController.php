@@ -60,7 +60,7 @@ class TransfertEntrepriseController extends AbstractController
         $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $agence = array_shift($agence); // Récupère la première agence (la plus récente)
 
-        $sql = 'SELECT * FROM Employer ORDER BY id DESC';
+        $sql = 'SELECT * FROM employer ORDER BY id DESC';
         $employer = $abgroup->executeQuery($sql)->fetchAllAssociative();
 
         $sql = 'SELECT * FROM magasin_acentrale ORDER BY id DESC';
@@ -78,7 +78,7 @@ class TransfertEntrepriseController extends AbstractController
         $agencetkatang = $katng->executeQuery($sql)->fetchAllAssociative();
         $agencetkatang = array_shift($agencetkatang);
 
-        $sql = 'SELECT * FROM Employer ORDER BY id DESC';
+        $sql = 'SELECT * FROM employer ORDER BY id DESC';
         $employerkatng = $katng->executeQuery($sql)->fetchAllAssociative();
 
         $sql = 'SELECT * FROM Produit_a ORDER BY id DESC';
@@ -108,6 +108,13 @@ class TransfertEntrepriseController extends AbstractController
 
             $sql = 'update magasin_acentrale set quantite = :quantite where id = :id';
             $abgroup->executeQuery($sql, ['quantite' => $reste, 'id' => $produitdirection['id']]);
+
+            $sql = 'SELECT * FROM Produit_a where id = :id';
+            $equivalent = $katng->executeQuery($sql, ['id' => $produitkatngs])->fetchAssociative();
+            $json = [
+                'id' => $equivalent['id'],
+                'nom' => $equivalent['nom']
+            ];
             // Récupérer les détails de l'employé sélectionné
             // 1. Définir la requête SQL d'insertion
             $sql = "INSERT INTO transfert_adirection (produit_id, user_id, quantite, reste, createt_at, statut, matricule, origine, destination, equivalent) VALUES (:produit_id, :user_id, :quantite, :reste, :createt_at, :statut, :matricule, :origine, :destination, :equivalent)";
@@ -123,7 +130,7 @@ class TransfertEntrepriseController extends AbstractController
                 'matricule' => $matricules,
                 'origine' => $direction,
                 'destination' => $agences,
-                'equivalent' => [$produitkatngs]
+                'equivalent' => json_encode($json),
             ];
             // 3. Exécuter la requête
             $katng->executeQuery($sql, $donnees);
