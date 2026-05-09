@@ -67,7 +67,7 @@ class TransfertEntrepriseController extends AbstractController
         $produitmagasin = $abgroup->executeQuery($sql)->fetchAllAssociative();
         $produitdirestion = [];
         foreach ($produitmagasin as $key => $value) {
-            $sql = 'SELECT * FROM Produit_a WHERE id = :id';
+            $sql = 'SELECT * FROM produit_a WHERE id = :id';
             $tmp = $abgroup->executeQuery($sql, ['id' => $value['produit_id']])->fetchAllAssociative();
             array_push($produitdirestion,['id' => $tmp['0']['id'], 'nom' => $tmp['0']['nom']]);
         }
@@ -81,7 +81,7 @@ class TransfertEntrepriseController extends AbstractController
         $sql = 'SELECT * FROM employer ORDER BY id DESC';
         $employerkatng = $katng->executeQuery($sql)->fetchAllAssociative();
 
-        $sql = 'SELECT * FROM Produit_a ORDER BY id DESC';
+        $sql = 'SELECT * FROM produit_a ORDER BY id DESC';
         $produitkatng = $katng->executeQuery($sql)->fetchAllAssociative();
 
         $numero = str_pad(random_int(0, 99), 3, '0', STR_PAD_LEFT);
@@ -109,7 +109,7 @@ class TransfertEntrepriseController extends AbstractController
             $sql = 'update magasin_acentrale set quantite = :quantite where id = :id';
             $abgroup->executeQuery($sql, ['quantite' => $reste, 'id' => $produitdirection['id']]);
 
-            $sql = 'SELECT * FROM Produit_a where id = :id';
+            $sql = 'SELECT * FROM produit_a where id = :id';
             $equivalent = $katng->executeQuery($sql, ['id' => $produitkatngs])->fetchAssociative();
             $json = [
                 'id' => $equivalent['id'],
