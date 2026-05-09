@@ -123,7 +123,7 @@ class TransfertEntrepriseController extends AbstractController
                 'matricule' => $matricules,
                 'origine' => $direction,
                 'destination' => $agences,
-                'equivalent' => $produitkatngs
+                'equivalent' => [$produitkatngs]
             ];
             // 3. Exécuter la requête
             $katng->executeQuery($sql, $donnees);
