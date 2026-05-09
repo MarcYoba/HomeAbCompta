@@ -133,4 +133,45 @@ class EntrepriseController extends AbstractController
         }
         return $this->redirectToRoute('app_entreprise_connexion');
     }
+
+    #[Route('/tranfert/entreprise/lise', name: 'app_transfert_entreprise_list')]
+    public function liste(ManagerRegistry $doctrine) : Response 
+    {
+       $bd = 0;
+        $abgroup = $doctrine->getConnection();
+        $bd+=1;
+        $date = new \DateTimeImmutable();
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agence = $abgroup->executeQuery($sql)->fetchAllAssociative();
+        $agence = array_shift($agence); // Récupère la première agence (la plus récente)
+
+        $tnk = $doctrine->getConnection('secondary');
+        $bd+=1;
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetnk = $tnk->executeQuery($sql)->fetchAllAssociative();
+        $agencetnk = array_shift($agencetnk);
+
+        $rky = $doctrine->getConnection('Tertiary');
+        $bd+=1;
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetriky = $rky->executeQuery($sql)->fetchAllAssociative();
+        $agencetriky = array_shift($agencetriky);
+
+        $katng = $doctrine->getConnection('Quaternary');
+        $bd+=1;
+
+        $sql = 'SELECT * FROM agence ORDER BY id DESC';
+        $agencetkatang = $katng->executeQuery($sql)->fetchAllAssociative();
+        $agencetkatang = array_shift($agencetkatang);
+        
+        return $this->render('entreprise/list.html.twig', [
+            'AgenceAbgroup' => $agence,
+            'AgenceTnk' => $agencetnk,
+            'AgenceRky' => $agencetriky,
+            'AgenceKatang' => $agencetkatang,
+        ]);
+    }
 }
