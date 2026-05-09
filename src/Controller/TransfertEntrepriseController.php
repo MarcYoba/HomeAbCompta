@@ -101,27 +101,30 @@ class TransfertEntrepriseController extends AbstractController
             $produitkatngs = $request->request->get('produitkatng');
             $quantite = $request->request->get('produit');
 
+            $sql = 'SELECT * FROM produit_a where id = :id';
+            $equivalent = $abgroup->executeQuery($sql, ['id' => $produitdirection])->fetchAssociative();
+
             $sql = 'SELECT * FROM magasin_acentrale WHERE produit_id = :id';
             $produitdirection = $abgroup->executeQuery($sql, ['id' => $produitdirection])->fetchAssociative();
+
+            
+            $json = [
+                'id' => $equivalent['id'],
+                'nom' => $equivalent['nom']
+            ];
 
             $reste = $produitdirection['quantite'] - $quantite;
 
             $sql = 'update magasin_acentrale set quantite = :quantite where id = :id';
             $abgroup->executeQuery($sql, ['quantite' => $reste, 'id' => $produitdirection['id']]);
 
-            $sql = 'SELECT * FROM produit_a where id = :id';
-            $equivalent = $katng->executeQuery($sql, ['id' => $produitkatngs])->fetchAssociative();
-            $json = [
-                'id' => $equivalent['id'],
-                'nom' => $equivalent['nom']
-            ];
             // Récupérer les détails de l'employé sélectionné
             // 1. Définir la requête SQL d'insertion
             $sql = "INSERT INTO transfert_adirection (produit_id, user_id, quantite, reste, createt_at, statut, matricule, origine, destination, equivalent) VALUES (:produit_id, :user_id, :quantite, :reste, :createt_at, :statut, :matricule, :origine, :destination, :equivalent)";
 
             // 2. Préparer les données à insérer
             $donnees = [
-                'produit_id' => $produitdirection["id"],
+                'produit_id' => $produitkatngs,
                 'user_id' => $employers,
                 'quantite' => $quantite,
                 'reste' => $reste,
